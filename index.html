@@ -6,12 +6,7 @@
   <title>WinPlay</title>
   <meta name="theme-color" content="#050B2A"/>
 
-  <!-- LOGO FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
-
-
-
-
 
 <style>
   :root{
@@ -22,6 +17,7 @@
     --accent:#ff2b3b;
     --accent-soft:#ff5a6a;
   }
+
   *{ box-sizing:border-box; margin:0; padding:0; }
 
   body{
@@ -32,18 +28,18 @@
     justify-content:center;
     background:radial-gradient(circle at top, #10194f 0, var(--bg) 45%, #020418 100%);
     color:var(--text);
-    padding:10px;
+    padding:20px;
   }
 
   .container{
     max-width:420px;
     width:100%;
     text-align:center;
+    margin-top:-20px;
   }
 
-  /* LOGO REDONDO */
   .logo{
-    margin:0 auto 20px;
+    margin:0 auto 28px;
     width:190px;
     height:190px;
     border-radius:50%;
@@ -73,6 +69,7 @@
     font-size:22px;
     margin-bottom:6px;
   }
+
   .verified{
     font-size:14px;
     font-weight:700;
@@ -82,7 +79,6 @@
     text-transform:uppercase;
   }
 
-  /* BOTÓN + ICONO TELEGRAM */
   .cta-btn{
     width:100%;
     padding:14px 20px;
@@ -104,6 +100,7 @@
     justify-content:center;
     gap:10px;
   }
+
   .cta-btn:hover{
     transform:translateY(-2px) scale(1.02);
     box-shadow:0 14px 30px rgba(0,0,0,0.8);
@@ -120,24 +117,27 @@
   .footer{
     margin-top:18px;
   }
+
   .footer p{
     font-size:16px;
     margin-bottom:6px;
   }
+
   .footer h2{
     font-size:15px;
     font-weight:700;
     margin:4px 0;
   }
+
   .footer strong{
     color:var(--accent-soft);
   }
 </style>
 </head>
+
 <body>
   <div class="container">
 
-    <!-- LOGO -->
     <div class="logo">
       <img src="avatar.jpeg" alt="WinPlay">
     </div>
@@ -145,7 +145,6 @@
     <h1>Obtene 7000 de regalo con la primer carga, ingresa a telegram y apreta /start</h1>
     <div class="verified">PLATAFORMA VERIFICADA</div>
 
-    <!-- BOTÓN CON ICONO -->
     <button id="btn-telegram" class="cta-btn">
       <span>/start</span>
       <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" class="tg-icon" alt="telegram">
@@ -161,16 +160,13 @@
 
 <script>
 document.getElementById("btn-telegram").addEventListener("click", function(){
-
     const telegramURL = "https://t.me/winplay1_bot";
     const ref = "TG_" + Math.random().toString(36).substring(2,8).toUpperCase();
 
-    // Tracking Meta
     if (typeof fbq === "function") {
       fbq("track", "Lead", { ref });
     }
 
-    // Tracking Google Analytics
     if (typeof gtag === "function") {
       gtag("event", "generate_lead", {
         event_category: "engagement",

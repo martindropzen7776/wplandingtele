@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WinPlay</title>
+  <meta name="theme-color" content="#050B2A"/>
+
+  <!-- LOGO FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2736341739855993');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2736341739855993&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+
+<!-- Google tag (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QHKXWZTNN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QHKXWZTNN0');
+</script>
+
+<style>
+  :root{
+    --bg:#050B2A;
+    --card:#070F3A;
+    --card-soft:#0B1548;
+    --text:#ffffff;
+    --accent:#ff2b3b;
+    --accent-soft:#ff5a6a;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  body{
+    min-height:100vh;
+    font-family:'Baloo 2','Montserrat',sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:radial-gradient(circle at top, #10194f 0, var(--bg) 45%, #020418 100%);
+    color:var(--text);
+    padding:20px;
+  }
+
+  .container{
+    max-width:420px;
+    width:100%;
+    text-align:center;
+  }
+
+  /* LOGO REDONDO */
+  .logo{
+    margin:0 auto 28px;
+    width:190px;
+    height:190px;
+    border-radius:50%;
+    padding:6px; 
+    background:conic-gradient(
+      from 200deg,
+      #ff2b3b,
+      #ffbc00,
+      #00e0ff,
+      #ff2b3b
+    );
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 12px 30px rgba(0,0,0,0.75);
+  }
+
+  .logo img{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    object-fit:cover;
+    background:#050B2A;
+  }
+
+  h1{
+    font-size:22px;
+    margin-bottom:6px;
+  }
+  .verified{
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:0.04em;
+    color:var(--accent-soft);
+    margin-bottom:22px;
+    text-transform:uppercase;
+  }
+
+  .cta-btn{
+    width:100%;
+    padding:14px 20px;
+    border-radius:999px;
+    border:none;
+    font-size:16px;
+    font-weight:800;
+    text-transform:uppercase;
+    cursor:pointer;
+    background:#ffffff;
+    color:#050B2A;
+    letter-spacing:0.03em;
+    box-shadow:0 10px 26px rgba(0,0,0,0.6);
+    transition:all .18s ease;
+    margin-top:5px;
+  }
+  .cta-btn:hover{
+    transform:translateY(-2px) scale(1.02);
+    box-shadow:0 14px 30px rgba(0,0,0,0.8);
+    background:var(--accent-soft);
+    color:#ffffff;
+  }
+
+  .footer{
+    margin-top:18px;
+  }
+  .footer p{
+    font-size:16px;
+    margin-bottom:6px;
+  }
+  .footer h2{
+    font-size:15px;
+    font-weight:700;
+    margin:4px 0;
+  }
+  .footer strong{
+    color:var(--accent-soft);
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- LOGO -->
+    <div class="logo">
+      <img src="avatar.jpeg" alt="WinPlay">
+    </div>
+
+    <h1>Obtene 7000 de regalo con la primer carga, ingresa a telegram y apreta /start</h1>
+    <div class="verified">PLATAFORMA VERIFICADA</div>
+
+<button id="btn-telegram" class="cta-btn">/start</button>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+    return null;
+  }
+
+  function getParam(name) {
+    const url = new URL(window.location.href);
+    return url.searchParams.get(name);
+  }
+
+  const btn = document.getElementById("btn-telegram");
+  if (!btn) {
+    console.log("⚠️ No se encontró el botón #btn-telegram");
+    return;
+  }
+
+  btn.addEventListener("click", async () => {
+    const sessionId = Math.random().toString(36).slice(2) + Date.now();
+
+    const fbp = getCookie("_fbp") || null;
+    const fbclid = getParam("fbclid");
+    const fbc = fbclid ? `fb.1.${Date.now()}.${fbclid}` : null;
+
+    try {
+      await fetch("https://bottelegramwp.onrender.com/api/telegram-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId, fbp, fbc })
+      });
+    } catch (e) {
+      console.log("❌ Error guardando sesión en backend:", e);
+    }
+
+    window.location.href = `https://t.me/winplay1_bot?start=${sessionId}`;
+  });
+});
+</script>
+
+
+
+    <div class="footer">
+      <p>Obtene en tu primera carga <strong> 7000$ de regalo!</strong></p>
+      <h2>Mínimo de carga <strong>$2.000</strong></h2>
+      <h2>CARGA Y RETIRA LAS 24 HS, TOCA INICIAR PARA RECICIBR TU BONO</h2>
+    </div>
+
+  </div>
+
+<script>
+document.getElementById("openTelegram").addEventListener("click", function(){
+
+    // TU LINK REAL DE TELEGRAM
+    const telegramURL = "https://t.me/winplay1_bot"; // ← cámbialo
+
+    const ref = "TG_" + Math.random().toString(36).substring(2,8).toUpperCase();
+
+    // Tracking Meta
+    if (typeof fbq === "function") {
+      fbq("track", "Lead", { ref });
+    }
+
+    // Tracking GA4
+    if (typeof gtag === "function") {
+      gtag("event", "generate_lead", {
+        event_category: "engagement",
+        event_label: "Telegram",
+        value: 1,
+        ref: ref
+      });
+    }
+
+    window.location.href = telegramURL;
+});
+</script>
+
+</body>
+</html>

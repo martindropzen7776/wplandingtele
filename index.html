@@ -9,8 +9,7 @@
   <!-- LOGO FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
 
-
-<!-- Meta Pixel Code -->
+  <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -26,8 +25,6 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=2736341739855993&ev=PageView&noscript=1"
 /></noscript>
-<!-- End Meta Pixel Code -->
-
 
 <!-- Google tag (GA4) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QHKXWZTNN0"></script>
@@ -107,6 +104,7 @@ src="https://www.facebook.com/tr?id=2736341739855993&ev=PageView&noscript=1"
     text-transform:uppercase;
   }
 
+  /* BOTÓN + ICONO TELEGRAM */
   .cta-btn{
     width:100%;
     padding:14px 20px;
@@ -122,12 +120,23 @@ src="https://www.facebook.com/tr?id=2736341739855993&ev=PageView&noscript=1"
     box-shadow:0 10px 26px rgba(0,0,0,0.6);
     transition:all .18s ease;
     margin-top:5px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
   }
   .cta-btn:hover{
     transform:translateY(-2px) scale(1.02);
     box-shadow:0 14px 30px rgba(0,0,0,0.8);
     background:var(--accent-soft);
     color:#ffffff;
+  }
+
+  .cta-btn .tg-icon{
+    width:22px;
+    height:22px;
+    pointer-events:none;
   }
 
   .footer{
@@ -158,55 +167,14 @@ src="https://www.facebook.com/tr?id=2736341739855993&ev=PageView&noscript=1"
     <h1>Obtene 7000 de regalo con la primer carga, ingresa a telegram y apreta /start</h1>
     <div class="verified">PLATAFORMA VERIFICADA</div>
 
-<button id="btn-telegram" class="cta-btn">/start</button>
-
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(";").shift();
-    return null;
-  }
-
-  function getParam(name) {
-    const url = new URL(window.location.href);
-    return url.searchParams.get(name);
-  }
-
-  const btn = document.getElementById("btn-telegram");
-  if (!btn) {
-    console.log("⚠️ No se encontró el botón #btn-telegram");
-    return;
-  }
-
-  btn.addEventListener("click", async () => {
-    const sessionId = Math.random().toString(36).slice(2) + Date.now();
-
-    const fbp = getCookie("_fbp") || null;
-    const fbclid = getParam("fbclid");
-    const fbc = fbclid ? `fb.1.${Date.now()}.${fbclid}` : null;
-
-    try {
-      await fetch("https://bottelegramwp.onrender.com/api/telegram-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sessionId, fbp, fbc })
-      });
-    } catch (e) {
-      console.log("❌ Error guardando sesión en backend:", e);
-    }
-
-    window.location.href = `https://t.me/winplay1_bot?start=${sessionId}`;
-  });
-});
-</script>
-
-
+    <!-- BOTÓN CON ICONO -->
+    <button id="btn-telegram" class="cta-btn">
+      <span>/start</span>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" class="tg-icon" alt="telegram">
+    </button>
 
     <div class="footer">
-      <p>Obtene en tu primera carga <strong> 7000$ de regalo!</strong></p>
+      <p>Obtene en tu primera carga <strong>7000$ de regalo!</strong></p>
       <h2>Mínimo de carga <strong>$2.000</strong></h2>
       <h2>CARGA Y RETIRA LAS 24 HS, TOCA INICIAR PARA RECICIBR TU BONO</h2>
     </div>
@@ -214,11 +182,9 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 
 <script>
-document.getElementById("openTelegram").addEventListener("click", function(){
+document.getElementById("btn-telegram").addEventListener("click", function(){
 
-    // TU LINK REAL DE TELEGRAM
-    const telegramURL = "https://t.me/winplay1_bot"; // ← cámbialo
-
+    const telegramURL = "https://t.me/winplay1_bot";
     const ref = "TG_" + Math.random().toString(36).substring(2,8).toUpperCase();
 
     // Tracking Meta
@@ -226,7 +192,7 @@ document.getElementById("openTelegram").addEventListener("click", function(){
       fbq("track", "Lead", { ref });
     }
 
-    // Tracking GA4
+    // Tracking Google Analytics
     if (typeof gtag === "function") {
       gtag("event", "generate_lead", {
         event_category: "engagement",
